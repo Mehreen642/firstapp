@@ -10,8 +10,8 @@ import "./Chat.css";
 import MicIcon from "@material-ui/icons/Mic";
 import axios from "./axios";
 
-const Chat = ({ messages }) => {
-  const [input, setInput] = useState("");
+function Chat({ messages }) {
+  const [input, setInput] = useState(" ");
 
   const sendMessage = async (e) => {
     e.preventDefault();
@@ -20,7 +20,7 @@ const Chat = ({ messages }) => {
       message: input,
       name: "mehreen",
       timestamp: "Just now",
-      received: true,
+      received: false,
     });
 
     setInput("");
@@ -47,20 +47,18 @@ const Chat = ({ messages }) => {
       </div>
 
       <div className="chat__body">
-        {messages.map((message, i) => {
-          return (
+        {messages.map((message) => (
             <p
-              key={i}
+              
               className={`chat__message ${
-                message.received && "chat__receiver"
-              }`}
+                message.received && "chat__receiver"}`}
             >
               <span className="chat__name">{message.name}</span>
               {message.message}
               <span className="chat__timestamp">{message.timestamp}</span>
             </p>
-          );
-        })}
+        
+        ))}
       </div>
 
       <div className="chat__footer">
